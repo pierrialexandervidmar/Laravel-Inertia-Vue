@@ -4,7 +4,7 @@ import Welcome from "@/Components/Welcome.vue";
 </script>
 
 <script>
-import { Link, Head } from "@inertiajs/vue3";
+import { Link, Head, useForm } from "@inertiajs/vue3";
 export default {
   props: {
     posts: Object,
@@ -13,6 +13,15 @@ export default {
     Link,
     Head,
   },
+  data() {
+    const form = useForm({
+        title: '',
+        content: '',
+    })
+    return {
+        form
+    }
+  }
 };
 </script>
 
@@ -47,7 +56,7 @@ export default {
                             >Título</label
                           >
                           <input
-
+                            v-model="form.title"
                             type="text"
                             name="title"
                             id="title"
@@ -65,7 +74,7 @@ export default {
                             >Descrição</label
                           >
                           <textarea
-
+                            v-model="form.content"
                             id="content"
                             name="content"
                             rows="3"
