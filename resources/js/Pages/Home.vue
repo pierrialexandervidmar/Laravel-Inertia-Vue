@@ -51,19 +51,24 @@
                     </table>
                 </div>
             </div>
+
+
+
+            
         </div>
     </div>
 </template>
 
 
 <script>
-import { Link } from '@inertiajs/vue3';
+import { Link, Head } from '@inertiajs/vue3';
 import MenuLayout from '../Layouts/LayoutMenu.vue'
 export default {
     name: "PageHome",
     components: {
         Link,
-        MenuLayout
+        MenuLayout,
+        Head
     },
     props: {
         posts: Object,
