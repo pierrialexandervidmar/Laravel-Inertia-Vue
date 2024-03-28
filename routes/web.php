@@ -20,7 +20,7 @@ Route::get('/about', function () {
     return Inertia::render('About', [
         'name' => 'Justino'
     ]);
-});
+})->name('about');
 
 
 
