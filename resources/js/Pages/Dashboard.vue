@@ -2,12 +2,19 @@
   <AppLayout title="Dashboard">
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Lista de Postagens
+        Lista de Postagens <span v-if="$page.props.users.name"> - Olá {{ $page.props.users.name }}, seja bem vindo!</span>
       </h2>
+
     </template>
 
+
     <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+        <div v-if="$page.props.flash.message" class="text-blue-600 ml-12">
+            {{ $page.props.flash.message }}
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="mt-0 overflow-x-auto">
             <div
