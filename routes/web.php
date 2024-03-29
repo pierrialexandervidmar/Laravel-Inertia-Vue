@@ -33,7 +33,7 @@ Route::middleware([
     Route::post('/dashboard/store', [PostController::class, 'store'])->name('dashboard.store');
     Route::get('/dashboard/edit/{id}', [PostController::class, 'edit'])->name('dashboard.edit');
     Route::put('/dashboard/update/{id}', [PostController::class, 'update'])->name('dashboard.update');
-    Route::delete('/dashboard/destroy{id}', [PostController::class, 'destroy'])->name('dashboard.destroy');
+    Route::delete('/dashboard/destroy/{id}', [PostController::class, 'destroy'])->name('dashboard.destroy');
 });
 
 

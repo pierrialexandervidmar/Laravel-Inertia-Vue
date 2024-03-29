@@ -1,17 +1,3 @@
-<script setup>
-import AppLayout from "@/Layouts/AppLayout.vue";
-import Welcome from "@/Components/Welcome.vue";
-</script>
-
-<script>
-import { Link } from '@inertiajs/vue3';
-export default {
-  props: {
-    posts: Object,
-  },
-};
-</script>
-
 <template>
   <AppLayout title="Dashboard">
     <template #header>
@@ -67,10 +53,23 @@ export default {
                     >
                       {{ post.content }}
                     </td>
-                    <td class="px-3 py-4 whitespace-nowrap">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                        >Edit</a
+                    <td>
+                      <Link
+                        :href="route('dashboard.edit', post.id)"
+                        class="inline-flex items-center px-4 py-2 mr-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       >
+                        Editar
+                      </Link>
+                    </td>
+
+                    <td>
+                      <button
+                        @click="destroy(post.id)"
+                        type="button"
+                        class="inline-flex items-center px-4 py-2 mr-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      >
+                        Apagar
+                      </button>
                     </td>
                   </tr>
                 </tbody>
@@ -82,3 +81,33 @@ export default {
     </div>
   </AppLayout>
 </template>
+
+
+<script setup>
+import AppLayout from "@/Layouts/AppLayout.vue";
+import Welcome from "@/Components/Welcome.vue";
+</script>
+
+<script>
+import { Link } from "@inertiajs/vue3";
+import { Inertia } from "@inertiajs/inertia"
+
+export default {
+  props: {
+    posts: Object,
+  },
+  components: {
+    Link
+  },
+  data() {
+    const destroy = (id) => {
+      if (confirm("Tem certeza que dezeja excluir o item " + id)) {
+        Inertia.delete(route("dashboard.destroy", id));
+      }
+    }
+    return {
+      destroy
+    };
+  },
+};
+</script>
